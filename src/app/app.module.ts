@@ -12,6 +12,8 @@ import { CurrentconditionsComponent } from './currentconditions/currentcondition
 import { EffectsModule } from '@ngrx/effects';
 import { CurrentConditionsEffects } from './effects/current-conditions.effects';
 import { HttpClientModule } from '@angular/common/http';
+import { HelloEffects } from './effects/hello.effects';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     StoreModule.forRoot(reducers, { metaReducers }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([]),
-    EffectsModule.forFeature([CurrentConditionsEffects])
+    EffectsModule.forFeature([CurrentConditionsEffects, HelloEffects]),
+    StoreRouterConnectingModule.forRoot({stateKey: 'router'})
   ],
   providers: [],
   bootstrap: [AppComponent]

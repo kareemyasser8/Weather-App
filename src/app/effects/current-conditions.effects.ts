@@ -16,9 +16,11 @@ export class CurrentConditionsEffects {
     return this.actions$.pipe(
       ofType(ZipcodeActionTypes.AddZipcode),
       mergeMap((action: any) => {
-        return this.weatherService.loadCurrentConditions(action['zipcode']).pipe(
+        console.log(action)
+        console.log(action.zipcode)
+        return this.weatherService.loadCurrentConditions(action.zipcode).pipe(
           map(data => {
-            return new CurrentConditionsLoaded(action['zipcode'], data)
+            return new CurrentConditionsLoaded(action.zipcode, data)
           }),
 
           catchError(err => {
